@@ -145,11 +145,12 @@ public class HasilFragment extends Fragment {
                 dateTime.set(year, monthOfYear, dayOfMonth);
                 tanggalPilih = jsonFormat.format(dateTime.getTime());
                 tanggal.setText(dateFormatterText.format(dateTime.getTime()));
-                initListView(String.valueOf(tanggalPilih));
                 String dateNumber = jsonFormat.format(dateTime.getTime());
                 String monthNumber  = (String) DateFormat.format("MM",    dateTime.getTime()); // 06
                 String yearNumber       = (String) DateFormat.format("yyyy",  dateTime.getTime());
                 getHasil(dateNumber,monthNumber,yearNumber);
+               // initListView(String.valueOf(tanggalPilih));
+                initListView(String.valueOf(monthNumber));
             }
 
         },  dateTime.get(Calendar.YEAR), dateTime.get(Calendar.MONTH), dateTime.get(Calendar.DAY_OF_MONTH));

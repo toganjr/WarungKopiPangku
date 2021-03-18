@@ -4,6 +4,7 @@ import com.example.warungkopipangku.Data.ListHasil;
 import com.example.warungkopipangku.Data.ListMenu_Response;
 import com.example.warungkopipangku.Data.ListPesananHasil_Response;
 import com.example.warungkopipangku.Data.ListPesananProduct_Response;
+import com.example.warungkopipangku.Data.ListPesananUser_Response;
 import com.example.warungkopipangku.Data.ListPesanan_Response;
 import com.example.warungkopipangku.Data.MsgInfo_Response;
 
@@ -36,6 +37,10 @@ public interface BaseAPIService {
                              @Field("bulan") String bulan,
                              @Field("tahun") String tahun
                              );
+
+    @FormUrlEncoded
+    @POST("get_pesananuser.php")
+    Call<ListPesananUser_Response> getPesananUser(@Field("id") int id);
 
     @FormUrlEncoded
     @POST("tambah_pesanan.php")

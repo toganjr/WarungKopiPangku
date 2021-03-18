@@ -54,6 +54,7 @@ public class TambahFragment extends Fragment {
     ListAdapter mListadapter;
     Button btnTambah;
     EditText etNama;
+    TextView txtNihil;
     Calendar calendar;
     int [] id,harga,tipe,idsearch,hargasearch,tipesearch;
     String [] nama,namasearch;
@@ -78,6 +79,7 @@ public class TambahFragment extends Fragment {
         listview =(RecyclerView) v.findViewById(R.id.listTambah);
         btnTambah = (Button) v.findViewById(R.id.btn_tambah);
         etNama = (EditText) v.findViewById(R.id.editText1);
+        txtNihil = (TextView) v.findViewById(R.id.TV_texttidakditemukan);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -278,7 +280,7 @@ public class TambahFragment extends Fragment {
                         ArrayList data = new ArrayList<DataNote>();
                         for (int i = 0; i < list.size(); i++)
                         {
-                            if (idsearch[i] != 0) {
+                            if ((idsearch[i] != 0) && (tipesearch[i] % 2 == 1)) {
 
                                 data.add(
                                         new DataNote
@@ -290,7 +292,16 @@ public class TambahFragment extends Fragment {
                                                 ));
 
                             } else {
+
                             }
+                        }
+
+                        if (!data.isEmpty()) {
+                            listview.setVisibility(View.VISIBLE);
+                            txtNihil.setVisibility(View.INVISIBLE);
+                        } else {
+                            listview.setVisibility(View.INVISIBLE);
+                            txtNihil.setVisibility(View.VISIBLE);
                         }
 
                         mListadapter = new ListAdapter(data);

@@ -41,97 +41,116 @@
         android:background="@color/darkwhite"
         />
 
-    <TextView
-        android:id="@+id/TV_texttotalHari"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/TV_pembatas"
-        android:text="Total Pendapatan hari ini : "
-        android:textStyle="bold"
-        />
-
-    <TextView
-        android:id="@+id/TV_hasilhari"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/TV_texttotalHari"
-        android:textSize="26dp"
-        android:textColor="@color/realblack"
-        />
-
-    <TextView
-        android:id="@+id/TV_texttotalBulan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/TV_hasilhari"
-        android:text="Total Pendapatan bulan ini : "
-        android:textStyle="bold"
-        />
-
-    <TextView
-        android:id="@+id/TV_hasilbulan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/TV_texttotalBulan"
-        android:textSize="26dp"
-        android:textColor="@color/realblack"
-        />
-
-    <TextView
-        android:id="@+id/TV_textproductdibeli"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/TV_hasilbulan"
-        android:text="Produk yang dibeli Hari ini : "
-        android:textStyle="bold"
-        />
-
-    <TextView
-        android:id="@+id/TV_texttidakadapesanan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/TV_textproductdibeli"
-        android:text="Tidak Ada Pesanan pada hari Ini"
-        android:textSize="12dp"
-        />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listHasil"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/TV_pembatas"
 
-        android:adjustViewBounds="true"
-
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layoutAnimation="@anim/layout_animation"
 
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.62"
+        app:layout_constraintHeight_percent="0.9"
 
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TV_textproductdibeli"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.95">
+        app:layout_constraintWidth_percent="1"
+        >
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:id="@+id/TV_texttotalHari"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Total Pendapatan hari ini : "
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/TV_hasilhari"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintTop_toBottomOf="@id/TV_texttotalHari"
+            android:textSize="26dp"
+            android:textColor="@color/realblack"
+            />
+
+        <TextView
+            android:id="@+id/TV_texttotalBulan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintTop_toBottomOf="@id/TV_hasilhari"
+            android:text="Total Pendapatan bulan ini : "
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/TV_hasilbulan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintTop_toBottomOf="@id/TV_texttotalBulan"
+            android:textSize="26dp"
+            android:textColor="@color/realblack"
+            />
+
+        <TextView
+            android:id="@+id/TV_textproductdibeli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintTop_toBottomOf="@id/TV_hasilbulan"
+            android:text="Produk yang dibeli Hari ini : "
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/TV_texttidakadapesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintTop_toBottomOf="@id/TV_textproductdibeli"
+            android:text="Tidak Ada Pesanan pada hari Ini"
+            android:textSize="12dp"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listHasil"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+
+            android:adjustViewBounds="true"
+
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.7"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TV_textproductdibeli"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.95">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,7 @@
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         android:background="@color/darkwhite"
+        android:layoutAnimation="@anim/layout_animation"
         >
 
         <TextView
@@ -25,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:layout_toLeftOf="@id/TV_historytanggal"
             android:layout_alignParentLeft="true"
             android:textColor="@color/realblack"
@@ -38,7 +39,6 @@
             android:textSize="14dp"
             android:layout_marginTop="2dp"
             android:layout_below="@id/TV_historynama"
-            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/TV_historystatus"
@@ -47,7 +47,6 @@
             android:text="Selesai"
             android:layout_toRightOf="@id/TV_textStatus"
             android:layout_below="@id/TV_historytotal"
-            android:textColor="@color/realblack"
             />
         <TextView
             android:id="@+id/TV_textStatus"

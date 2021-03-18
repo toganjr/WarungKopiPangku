@@ -2,6 +2,7 @@ package com.example.warungkopipangku;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -52,6 +53,7 @@ public class HistoryFragment extends Fragment {
     ListAdapter mListadapter;
     ListAdapter2 mListadapter2;
     RecyclerView listview;
+    TextView txtNihil;
     Spinner spinner_sort;
     int [] id,idsearch;
     String [] nama,total,status,tanggal,namasearch,totalSearch,statusSearch,tanggalSearch;
@@ -71,6 +73,7 @@ public class HistoryFragment extends Fragment {
         mApiService = UtilsApi.getClient().create(BaseAPIService.class);
 
         listview =(RecyclerView) v.findViewById(R.id.listHistory);
+        txtNihil = (TextView) v.findViewById(R.id.TV_texttidakditemukan);
         spinner_sort = v.findViewById(R.id.spinner1);
         String[] items = new String[]{"Pesanan", "Produk"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
@@ -112,16 +115,22 @@ public class HistoryFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                initListView(1,query);
-
+                if (spinner_sort.getSelectedItemPosition() == 0){
+                    initListView(1,query);
+                } else {
+                    initListView2(1,query);
+                }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                initListView(1,newText);
-
+                if (spinner_sort.getSelectedItemPosition() == 0){
+                    initListView(1,newText);
+                } else {
+                    initListView2(1,newText);
+                }
                 return true;
             }
         });
@@ -257,12 +266,10 @@ public class HistoryFragment extends Fragment {
                     id = new int[list.size()];
                     nama = new String[list.size()];
                     total = new String[list.size()];
-                    status = new String[list.size()];
                     tanggal = new String[list.size()];
                     idsearch = new int[list.size()];
                     namasearch = new String[list.size()];
                     totalSearch = new String[list.size()];
-                    statusSearch = new String[list.size()];
                     tanggalSearch =  new String[list.size()];
                     for (int cc=0; cc < list.size(); cc++){
                         for (int i =0;i<list.size();i++) {
@@ -291,18 +298,16 @@ public class HistoryFragment extends Fragment {
                     } else{
                         for (int cc=0; cc < list.size(); cc++){
                             if(nama[cc].toLowerCase().contains(text.toLowerCase())) {
-                                idsearch[cc] = id[cc];
                                 namasearch[cc] = nama[cc];
                                 totalSearch[cc] = total[cc];
-                                statusSearch[cc] = status[cc];
+                                tanggalSearch[cc] = tanggal[cc];
                             }
                         }
 
                         ArrayList data = new ArrayList<DataNote2>();
                         for (int i = 0; i < list.size(); i++)
                         {
-                            if (idsearch[i] != 0) {
-
+                            if (namasearch[i] != null) {
                                 data.add(
                                         new DataNote2
                                                 (
@@ -313,6 +318,13 @@ public class HistoryFragment extends Fragment {
 
                             } else {
                             }
+                        }
+                        if (!data.isEmpty()) {
+                            listview.setVisibility(View.VISIBLE);
+                            txtNihil.setVisibility(View.INVISIBLE);
+                        } else {
+                            listview.setVisibility(View.INVISIBLE);
+                            txtNihil.setVisibility(View.VISIBLE);
                         }
 
                         mListadapter2 = new ListAdapter2(data);
@@ -395,6 +407,11 @@ public class HistoryFragment extends Fragment {
             String uangTotal = NumberFormat.getNumberInstance(Locale.US).format(Integer.valueOf(dataList.get(position).getTotal())); //add
             holder.textViewNama.setText(dataList.get(position).getNama());
             holder.textViewTotal.setText("Rp. "+uangTotal);
+            if (dataList.get(position).getStatus().equalsIgnoreCase("proses")) {
+                holder.textViewStatus.setTextColor(getResources().getColor(R.color.green));
+            } else {
+                holder.textViewStatus.setTextColor(getResources().getColor(R.color.textColor));
+            }
             holder.textViewStatus.setText(dataList.get(position).getStatus());
             holder.textViewTanggal.setText(dataList.get(position).getTanggal());
 
@@ -404,7 +421,12 @@ public class HistoryFragment extends Fragment {
                 @Override
                 public void onClick(View v)
                 {
-
+                    Intent intent = new Intent(getActivity(), LihatPesananActivity.class);
+                    intent.putExtra("EXTRA_ID", dataList.get(position).getId());
+                    intent.putExtra("EXTRA_NAMA", dataList.get(position).getNama());
+                    intent.putExtra("EXTRA_TOTAL", dataList.get(position).getTotal());
+                    intent.putExtra("EXTRA_STATUS", dataList.get(position).getStatus());
+                    startActivity(intent);
                 }
             });
         }

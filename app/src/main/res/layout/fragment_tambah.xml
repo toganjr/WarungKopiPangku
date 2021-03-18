@@ -47,6 +47,19 @@
         android:background="@color/darkwhite"
         />
 
+    <TextView
+        android:id="@+id/TV_texttidakditemukan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintTop_toBottomOf="@id/pembatas"
+        android:text="Pencarian tidak ditemukan"
+        android:textSize="12dp"
+        android:visibility="invisible"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listTambah"
         android:layout_width="0dp"
@@ -54,10 +67,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
 
-        android:adjustViewBounds="true"
         android:layout_marginTop="15dp"
 
         android:paddingTop="1dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".75"
